@@ -19,8 +19,11 @@ for i,interface in enumerate(interfaceList):
         commandList.append((ipadd))
         commandList.append("exit")
 
+#Python 2 raw_input()
+#Python 3 input()
+#eingabe=raw_input("Geben Sie bitte ssh (Klein geschrieben): ")
 
-eingabe=raw_input("Geben Sie bitte ssh (Klein geschrieben): ")
+eingabe=input("Geben Sie bitte ssh (Klein geschrieben): ")
 def my_function(eingabe):
     if eingabe==('ssh'):
         commandList.append("hostname Router0")

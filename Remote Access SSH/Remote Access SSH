@@ -1,0 +1,41 @@
+cmdEthernet=("interface GigabitEthernet0/{}")
+cmdAddress=("ip address {}")
+cmdMask=("  {}")
+
+commandList=[]
+interfaceList =[0,1]
+addressList =["192.168.10.1" , "192.168.11.1"]
+maskList = ["255.255.255.0","255.255.255.0"]
+
+commandList.append("enable")
+commandList.append("configure terminal")
+
+
+for i,interface in enumerate(interfaceList):
+        commandList.append(cmdEthernet.format(interface))
+        address= addressList[i]
+        mask= maskList[i]
+        ipadd=cmdAddress.format(address)+cmdMask.format(mask)
+        commandList.append((ipadd))
+        commandList.append("exit")
+
+
+eingabe=raw_input("Geben Sie bitte ssh (Klein geschrieben): ")
+def my_function(eingabe):
+    if eingabe==('ssh'):
+        commandList.append("hostname Router0")
+        commandList.append("ip domain-name router0.local")
+        commandList.append("crypto key generate rsa")
+        commandList.append("2048")
+        commandList.append("ip ssh version 2")
+        commandList.append("line vty 0 4")
+        commandList.append("transport input telnet")
+        commandList.append("login local")
+        commandList.append("username admin password cisco")
+        commandList.append("exit")
+        commandList.append("write")
+
+my_function(eingabe)
+
+for a in commandList:
+        print(a)

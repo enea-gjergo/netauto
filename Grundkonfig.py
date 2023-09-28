@@ -19,3 +19,4 @@ for i,interface in enumerate(interfaceList):
         ipadd=cmdAddress.format(address)+cmdMask.format(mask)
         commandList.append((ipadd))
         commandList.append("exit")
+        print(commandList)

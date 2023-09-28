@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+cmdEthernet=("interface FastEthernet0/{}")
+cmdVlan=("switchport access vlan {}")
+commandList=[]
+portList=[1,4,6,10]
+vlanList=[10,10, 20,20]
+trunkList=[2,3]
+
+
+for i,port in enumerate(portList):
+        commandList.append(cmdEthernet.format(port))
+        vlan=vlanList[i]
+        commandList.append(cmdVlan.format(vlan))
+        commandList.append("exit")
+
+for trunkport in trunkList:
+        commandList.append(cmdEthernet.format(trunkport))
+        commandList.append("switchport mode trunk")
+        commandList.append("exit")
+
+for a in commandList:
+        print(a)
